@@ -38,6 +38,7 @@ class FilectrlAdaptor: public QDBusAbstractAdaptor
 "      <arg direction=\"in\" type=\"i\" name=\"arg\"/>\n"
 "    </method>\n"
 "    <signal name=\"signals1\">\n"
+"    <arg name=\"nickname\" type=\"i\" direction=\"out\"/>"
 "    </signal>\n"
 "  </interface>\n"
         "")
