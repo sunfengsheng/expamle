@@ -6,24 +6,7 @@
 #include <QDebug>
 
 #include "ukui_systemtrayicon.h"
-
-struct IconPixmap {
-    int width;
-    int height;
-    QByteArray bytes;
-};
-
-typedef QList<IconPixmap> IconPixmapList;
-
-struct ToolTip {
-    QString iconName;
-    QList<IconPixmap> iconPixmap;
-    QString title;
-    QString description;
-};
-
-Q_DECLARE_METATYPE(IconPixmap)
-Q_DECLARE_METATYPE(ToolTip)
+#include "dbustypes.h"
 
 class UkuiSystemTrayIcon;
 class DBusType : public QObject

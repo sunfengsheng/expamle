@@ -19,12 +19,14 @@ SOURCES += \
     main.cpp \
     ukui_systemtrayicon.cpp \
     ukui_systemtrayicon_test.cpp \
-    dbus_type.cpp
+    dbus_type.cpp\
+    dbustypes.cpp
 
 HEADERS += \
     ukui_systemtrayicon.h \
     ukui_systemtrayicon_test.h \
-    dbus_type.h
+    dbus_type.h\
+    dbustypes.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
