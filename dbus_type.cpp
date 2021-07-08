@@ -4,7 +4,7 @@ DBusType::DBusType(UkuiSystemTrayIcon *parent,int id)
 {
     m_SystemIcon=parent;
     QDBusConnection dbus = QDBusConnection::sessionBus();
-    QString service="org.ukui.StatusNotifierItem-"+QString::number(id);
+    QString service="org.kde.StatusNotifierItem-"+QString::number(id);
     QString path="/StatusNotifierItem";
     if (!dbus.registerService(service))
         qDebug() << QDBusConnection::sessionBus().lastError().message();
@@ -12,15 +12,77 @@ DBusType::DBusType(UkuiSystemTrayIcon *parent,int id)
         qDebug() << QDBusConnection::sessionBus().lastError().message();
 
     QDBusInterface *m_interFace=new QDBusInterface ("org.kde.StatusNotifierWatcher", "/StatusNotifierWatcher",
-                               "org.kde.StatusNotifierWatcher",
-                               QDBusConnection::sessionBus());
-      if (!m_interFace->isValid())
-      {
-         qWarning() << qPrintable(QDBusConnection::sessionBus().lastError().message());
-      }
-      m_interFace->call("RegisterStatusNotifierItem",service);
+                                                    "org.kde.StatusNotifierWatcher",
+                                                    QDBusConnection::sessionBus());
+    if (!m_interFace->isValid())
+    {
+        qWarning() << qPrintable(QDBusConnection::sessionBus().lastError().message());
+    }
+    m_interFace->call("RegisterStatusNotifierItem",service);
 }
 
+
+
+//property
+QString DBusType::attentionIconName(){
+    return "attentionIconName";
+}
+IconPixmapList DBusType::attentionIconPixmap(){
+    IconPixmapList tep;
+    return tep;
+}
+QString DBusType::attentionMovieName(){
+    return "attentionMovieName";
+}
+QString DBusType::category(){
+    return "category";
+}
+QString DBusType::iconName(){
+     return "network-wired-connected-symbolic";
+}
+//IconPixmapList DBusType::iconPixmap(){
+//    IconPixmapList tep;
+//    return tep;
+//}
+QString DBusType::iconThemePath(){
+    return "iconThemePath";
+}
+QString DBusType::id(){
+    return "id";
+}
+bool DBusType::itemIsMenu(){
+    return true;
+}
+QDBusObjectPath DBusType::menu(){
+    QDBusObjectPath path;
+    return path;
+}
+QString DBusType::overlayIconName(){
+    return "overlayIconName";
+}
+//IconPixmapList DBusType::overlayIconPixmap(){
+//    IconPixmapList tep;
+//    return tep;
+//}
+QString DBusType::status(){
+    return "Active";
+}
+QString DBusType::title(){
+    return "title";
+}
+//ToolTip DBusType::toolTip(){
+//    ToolTip tp;
+//    return tp;
+//}
+int DBusType::windowId(){
+    return 1;
+}
+
+
+
+
+
+//method
 void DBusType::Activate(int x, int y)
 {
     m_SystemIcon->Activate(x,y);
