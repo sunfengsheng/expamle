@@ -50,7 +50,8 @@ private:
 //   ToolTip toolTip();
    int windowId();
 
-
+public:
+   void setIcon(QString icon);
 
 private:
     UkuiSystemTrayIcon *m_SystemIcon;

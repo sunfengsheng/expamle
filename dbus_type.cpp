@@ -38,7 +38,8 @@ QString DBusType::category(){
     return "category";
 }
 QString DBusType::iconName(){
-     return "network-wired-connected-symbolic";
+//     return "network-wired-connected-symbolic";
+    return this->property("icon").toString();
 }
 //IconPixmapList DBusType::iconPixmap(){
 //    IconPixmapList tep;
@@ -79,7 +80,11 @@ int DBusType::windowId(){
 }
 
 
-
+//public
+void DBusType::setIcon(QString icon){
+    this->setProperty("icon",icon);
+    iconName();
+}
 
 
 //method

@@ -21,7 +21,7 @@ public:
     void Scroll(int delta, const QString &orientation);
     void SecondaryActivate(int x, int y);
 
-    void SetIcon();
+    void setIcon(const QIcon &icon);
 
 signals:
     void activated(int x, int y);

@@ -16,6 +16,7 @@ UkuiSystemTrayIconTest::UkuiSystemTrayIconTest(QWidget *parent)
 
     connect(m_TrayIcon,&UkuiSystemTrayIcon::activated,this,&UkuiSystemTrayIconTest::activate);
     connect(m_TrayIcon,&UkuiSystemTrayIcon::Context,this,&UkuiSystemTrayIconTest::Context);
+    m_TrayIcon->setIcon(QIcon::fromTheme("network-wired-connected-symbolic"));
 }
 
 UkuiSystemTrayIconTest::~UkuiSystemTrayIconTest()

@@ -1,4 +1,7 @@
+#include <QIcon>
+
 #include "ukui_systemtrayicon.h"
+
 UkuiSystemTrayIcon::UkuiSystemTrayIcon(QObject *parent,int pid)
 {
     m_Dbus=new DBusType(this,pid);
@@ -20,6 +23,8 @@ void UkuiSystemTrayIcon::SecondaryActivate(int x, int y){
     emit SecondaryActivated(x,y);
 }
 
-void UkuiSystemTrayIcon::SetIcon(){
-
+void UkuiSystemTrayIcon::setIcon(const QIcon &icon){
+    if(!icon.name().isEmpty()){
+        m_Dbus->setIcon(icon.name());
+    }
 }
