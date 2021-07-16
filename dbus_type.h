@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtDBus/QtDBus>
 #include <QDebug>
+#include <dbusmenu-qt5/dbusmenuexporter.h>
 
 #include "ukui_systemtrayicon.h"
 #include "dbustypes.h"
@@ -24,7 +25,7 @@ public:
     Q_PROPERTY(QString IconThemePath READ iconThemePath)
     Q_PROPERTY(QString Id READ id)
     Q_PROPERTY(bool ItemIsMenu READ itemIsMenu)
-//    Q_PROPERTY(QDBusObjectPath Menu READ menu)
+    Q_PROPERTY(QDBusObjectPath Menu READ menu)
     Q_PROPERTY(QString OverlayIconName READ overlayIconName)
 //    Q_PROPERTY(IconPixmapList OverlayIconPixmap READ overlayIconPixmap)
     Q_PROPERTY(QString Status READ status)
@@ -52,9 +53,11 @@ private:
 
 public:
    void setIcon(QString icon);
+   void setMenu(const QMenu &menu);
 
 private:
     UkuiSystemTrayIcon *m_SystemIcon;
+    QString m_Service;
 
 public slots:
    void Activate(int x, int y);

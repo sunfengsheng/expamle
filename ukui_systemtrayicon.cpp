@@ -28,3 +28,7 @@ void UkuiSystemTrayIcon::setIcon(const QIcon &icon){
         m_Dbus->setIcon(icon.name());
     }
 }
+
+void UkuiSystemTrayIcon::setMenu(const QMenu &menu){
+
+}

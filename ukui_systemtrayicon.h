@@ -22,6 +22,7 @@ public:
     void SecondaryActivate(int x, int y);
 
     void setIcon(const QIcon &icon);
+    void setMenu(const QMenu &menu);
 
 signals:
     void activated(int x, int y);

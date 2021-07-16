@@ -5,6 +5,7 @@ DBusType::DBusType(UkuiSystemTrayIcon *parent,int id)
     m_SystemIcon=parent;
     QDBusConnection dbus = QDBusConnection::sessionBus();
     QString service="org.kde.StatusNotifierItem-"+QString::number(id);
+    m_Service=service;
     QString path="/StatusNotifierItem";
     if (!dbus.registerService(service))
         qDebug() << QDBusConnection::sessionBus().lastError().message();
@@ -56,6 +57,7 @@ bool DBusType::itemIsMenu(){
 }
 QDBusObjectPath DBusType::menu(){
     QDBusObjectPath path;
+    path.setPath("/MenuBar");
     return path;
 }
 QString DBusType::overlayIconName(){
@@ -101,4 +103,9 @@ void DBusType::Scroll(int delta, const QString &orientation)
 }
 void DBusType::SecondaryActivate(int x, int y){
     m_SystemIcon->SecondaryActivate(x,y);
+}
+
+//menu
+void DBusType::setMenu(const QMenu &menu){
+//   DBusMenuExporter();
 }
