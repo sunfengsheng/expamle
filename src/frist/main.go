@@ -2,7 +2,7 @@
 package main
 
 func main() {
-	dbus_type()
+	go dbus_type()
 	ExampleObject_Call()
 	select {}
 }

@@ -46,6 +46,7 @@ func dbus_type() {
 		os.Exit(1)
 	}
 	fmt.Println("Listening on com.github.guelfey.Demo / /com/github/guelfey/Demo ...")
+	select {}
 
 }
 
