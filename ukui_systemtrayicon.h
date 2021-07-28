@@ -2,9 +2,11 @@
 #define UKUISYSTEMTRAYICON_H
 
 #include <QObject>
-#include "dbus_type.h"
+#include <QMenu>
 
-class DBusType;
+#include "dbus_server.h"
+
+class DBusServer;
 class UkuiSystemTrayIcon : public QObject
 {
     Q_OBJECT
@@ -13,7 +15,7 @@ public:
 
 
 private:
-    DBusType *m_Dbus;
+    DBusServer *m_Dbus;
 
 public:
     void Activate(int x, int y);
@@ -22,7 +24,7 @@ public:
     void SecondaryActivate(int x, int y);
 
     void setIcon(const QIcon &icon);
-    void setMenu(const QMenu &menu);
+    void setMenu(QMenu *menu);
 
 signals:
     void activated(int x, int y);

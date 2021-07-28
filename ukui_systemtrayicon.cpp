@@ -4,7 +4,7 @@
 
 UkuiSystemTrayIcon::UkuiSystemTrayIcon(QObject *parent,int pid)
 {
-    m_Dbus=new DBusType(this,pid);
+    m_Dbus=new DBusServer(this,pid);
 }
 
 void UkuiSystemTrayIcon::Activate(int x, int y){
@@ -29,6 +29,6 @@ void UkuiSystemTrayIcon::setIcon(const QIcon &icon){
     }
 }
 
-void UkuiSystemTrayIcon::setMenu(const QMenu &menu){
-
+void UkuiSystemTrayIcon::setMenu(QMenu *menu){
+    m_Dbus->setMenu(menu);
 }

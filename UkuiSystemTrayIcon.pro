@@ -16,17 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dbus_server.cpp \
     main.cpp \
     ukui_systemtrayicon.cpp \
     ukui_systemtrayicon_test.cpp \
-    dbus_type.cpp\
-    dbustypes.cpp
+    dbustypes.cpp \
+    dbus_menu.cpp
 
 HEADERS += \
+    dbus_server.h \
     ukui_systemtrayicon.h \
     ukui_systemtrayicon_test.h \
-    dbus_type.h\
-    dbustypes.h
+    dbustypes.h \
+    dbus_menu.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

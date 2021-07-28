@@ -10,12 +10,15 @@ UkuiSystemTrayIconTest::UkuiSystemTrayIconTest(QWidget *parent)
     m_TrayIcon = new UkuiSystemTrayIcon(this,pid);
     m_Menu = new QMenu(this);
 
-    m_Menu->addAction(QString("open"));
-
-    m_Menu->addSeparator();
-
+    QAction *a2 = new QAction("a2", m_Menu);
+    m_Menu->addAction(a2);
+    m_TrayIcon->setMenu(m_Menu);
     connect(m_TrayIcon,&UkuiSystemTrayIcon::activated,this,&UkuiSystemTrayIconTest::activate);
     connect(m_TrayIcon,&UkuiSystemTrayIcon::Context,this,&UkuiSystemTrayIconTest::Context);
+    connect(a2,&QAction::triggered,this,[=](){
+        qDebug()<<"a2 is click !!!!!!!!!";
+        qApp->exit();
+    });
     m_TrayIcon->setIcon(QIcon::fromTheme("network-wired-connected-symbolic"));
 }
 
@@ -31,7 +34,7 @@ void UkuiSystemTrayIconTest::activate(int x,int y){
 }
 
 void UkuiSystemTrayIconTest::Context(int x,int y){
-    m_Menu->setGeometry(x,y-200,200,200);
-    m_Menu->show();
+//    m_Menu->setGeometry(x,y-200,200,200);
+//    m_Menu->show();
 }
 

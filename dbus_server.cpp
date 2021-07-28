@@ -1,6 +1,7 @@
-#include "dbus_type.h"
+#include "dbus_server.h"
+#include <QApplication>
 
-DBusType::DBusType(UkuiSystemTrayIcon *parent,int id)
+DBusServer::DBusServer(UkuiSystemTrayIcon *parent,int id)
 {
     m_SystemIcon=parent;
     QDBusConnection dbus = QDBusConnection::sessionBus();
@@ -25,87 +26,92 @@ DBusType::DBusType(UkuiSystemTrayIcon *parent,int id)
 
 
 //property
-QString DBusType::attentionIconName(){
+QString DBusServer::attentionIconName(){
     return "attentionIconName";
 }
-IconPixmapList DBusType::attentionIconPixmap(){
+IconPixmapList DBusServer::attentionIconPixmap(){
     IconPixmapList tep;
     return tep;
 }
-QString DBusType::attentionMovieName(){
+QString DBusServer::attentionMovieName(){
     return "attentionMovieName";
 }
-QString DBusType::category(){
+QString DBusServer::category(){
     return "category";
 }
-QString DBusType::iconName(){
+QString DBusServer::iconName(){
 //     return "network-wired-connected-symbolic";
     return this->property("icon").toString();
 }
-//IconPixmapList DBusType::iconPixmap(){
+//IconPixmapList DBusServer::iconPixmap(){
 //    IconPixmapList tep;
 //    return tep;
 //}
-QString DBusType::iconThemePath(){
+QString DBusServer::iconThemePath(){
     return "iconThemePath";
 }
-QString DBusType::id(){
+QString DBusServer::id(){
     return "id";
 }
-bool DBusType::itemIsMenu(){
+bool DBusServer::itemIsMenu(){
     return true;
 }
-QDBusObjectPath DBusType::menu(){
+QDBusObjectPath DBusServer::menuItem(){
     QDBusObjectPath path;
     path.setPath("/MenuBar");
     return path;
 }
-QString DBusType::overlayIconName(){
+QString DBusServer::overlayIconName(){
     return "overlayIconName";
 }
-//IconPixmapList DBusType::overlayIconPixmap(){
+//IconPixmapList DBusServer::overlayIconPixmap(){
 //    IconPixmapList tep;
 //    return tep;
 //}
-QString DBusType::status(){
+QString DBusServer::status(){
     return "Active";
 }
-QString DBusType::title(){
+QString DBusServer::title(){
     return "title";
 }
-//ToolTip DBusType::toolTip(){
+//ToolTip DBusServer::toolTip(){
 //    ToolTip tp;
 //    return tp;
 //}
-int DBusType::windowId(){
+int DBusServer::windowId(){
     return 1;
 }
 
 
 //public
-void DBusType::setIcon(QString icon){
+void DBusServer::setIcon(QString icon){
     this->setProperty("icon",icon);
     iconName();
 }
 
 
 //method
-void DBusType::Activate(int x, int y)
+void DBusServer::Activate(int x, int y)
 {
     m_SystemIcon->Activate(x,y);
 }
-void DBusType::ContextMenu(int x, int y){
-    m_SystemIcon->ContextMenu(x,y);
+void DBusServer::ContextMenu(int x, int y){
+//    m_SystemIcon->ContextMenu(x,y);
 }
-void DBusType::Scroll(int delta, const QString &orientation)
+void DBusServer::Scroll(int delta, const QString &orientation)
 {
     m_SystemIcon->Scroll(delta,orientation);
 }
-void DBusType::SecondaryActivate(int x, int y){
+void DBusServer::SecondaryActivate(int x, int y){
     m_SystemIcon->SecondaryActivate(x,y);
 }
 
 //menu
-void DBusType::setMenu(const QMenu &menu){
-//   DBusMenuExporter();
+void DBusServer::setMenu(QMenu *menu){
+    m_DMenu = new DBusMenu(this,menu);
+    QThread* thread1 = new QThread();
+
+//    Test* w = new Test();
+    m_DMenu->moveToThread(thread1);
+    thread1->start();
 }
