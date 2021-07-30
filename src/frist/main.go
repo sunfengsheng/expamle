@@ -3,6 +3,8 @@ package main
 
 func main() {
 	go dbus_type()
-	ExampleObject_Call()
+	// ExampleObject_Call()
+	// read_yaml()
+	read_file()
 	select {}
 }
